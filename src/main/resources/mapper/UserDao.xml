@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sysu.jupyterhubadmin.dao.UserDao">
+    <insert id="addUser" useGeneratedKeys="true" parameterType="com.sysu.jupyterhubadmin.entity.User">
+        INSERT INTO
+        user(username, password, blocked, role)
+        VALUES
+        (#{username}, #{password}, #{blocked}, #{role})
+    </insert>
+
+    <select id="getAllUser" resultType="com.sysu.jupyterhubadmin.entity.User">
+        select * from user
+    </select>
+
+    <select id="signin" resultType="com.sysu.jupyterhubadmin.entity.User">
+        select * from user
+        where username = #{username}
+        and password = #{password}
+        and admin = 1
+    </select>
+
+    <select id="getUserByName" resultType="com.sysu.jupyterhubadmin.entity.User">
+        select * from user
+        where username = #{username}
+    </select>
+
+    <delete id="deleteUser" >
+        delete from user
+        where username = #{username}
+    </delete>
+
+    <update id="editUserName">
+        update user
+        set username = #{newName}
+        where username = #{oldName}
+    </update>
+</mapper>

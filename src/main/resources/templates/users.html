@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AdminLTE 3 | Simple Tables</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../dist/css/adminlte.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <!-- SweetAlert -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+</head>
+<body class="hold-transition layout-top-nav">
+<div class="wrapper">
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
+        <div class="container-fluid">
+            <a href="/dashboard" class="navbar-brand">
+                <img src="../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+                     style="opacity: .8;">
+                <span class="brand-text font-weight-light">Jupyterhub</span>
+            </a>
+
+            <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse order-3" id="navbarCollapse">
+                <!-- Left navbar links -->
+                <ul class="navbar-nav">
+                    <li class="nav-item ">
+                        <a href="/dashboard" class="nav-link">Dashboard</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="/users" class="nav-link">Users</a>
+                    </li>
+
+                </ul>
+
+                <!-- SEARCH FORM -->
+            </div>
+
+        </div>
+    </nav>
+    <!-- /.navbar -->
+
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper"  style="padding-right: 20px;padding-left: 20px">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>用户列表</h1>
+                    </div>
+<!--                    <div class="col-sm-6">-->
+<!--                        <ol class="breadcrumb float-sm-right">-->
+<!--                            <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>-->
+<!--                            <li class="breadcrumb-item active">用户列表</li>-->
+<!--                        </ol>-->
+<!--                    </div>-->
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title"></h3>
+
+                                <div class="card-tools">
+<!--                                    <ul class="pagination pagination-sm float-right">-->
+<!--                                        <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>-->
+<!--                                        <li class="page-item"><a class="page-link" href="#">1</a></li>-->
+<!--                                        <li class="page-item"><a class="page-link" href="#">2</a></li>-->
+<!--                                        <li class="page-item"><a class="page-link" href="#">3</a></li>-->
+<!--                                        <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>-->
+<!--                                    </ul>-->
+                                    <button class="btn btn-success" onclick="add_user()" style="margin-right: 40px">add user</button>
+                                </div>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body p-0">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <!--                    <th style="width: 10px">#</th>-->
+                                        <th style="width: 12%;">User</th>
+                                        <th style="width: 8%">Admin</th>
+                                        <th style="width: 8%">Role</th>
+                                        <th style="width: 12%">Last Seen </th>
+                                        <th style="width: 12%;text-align: center;">Running </th>
+                                        <th style="width: 12%;text-align: center;">Access</th>
+                                        <th style="width: 10%;text-align: center;">Edit</th>
+                                        <th style="width: 10%;text-align: center;">Delete</th>
+                                        <!--                    <th style="width: 40px">Label</th>-->
+                                    </tr>
+                                    </thead>
+                                    <tbody id="user_table">
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <footer class="main-footer">
+        <div class="float-right d-none d-sm-block">
+            <b>Version</b> 1.0.0-pre
+        </div>
+<!--        <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights-->
+<!--        reserved.-->
+    </footer>
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<script src="../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../dist/js/demo.js"></script>
+
+<script>
+    var token = localStorage.getItem("token")
+
+    init_table()
+
+    function init_table() {
+        $.ajax({
+            //请求方式
+            type : "GET",
+            url:"/api/users",
+            crossDomain: true,
+            // beforeSend: function(xhr) {
+            //     xhr.setRequestHeader("Authorization:'token 333943de7dbe4703a0b9ccf779cdccaf'");
+            // },
+            headers:{'Content-Type':'application/json;charset=utf8','token':token},
+            //请求成功
+            success : function(result) {
+                console.log(result)
+                if (result.code === 0) {
+                    var users = result.data.users;
+                    var tbody = document.getElementById("user_table")
+                    var tab = ""
+                    for (var i in users)
+                    {
+                        tab += "<tr>"
+                        tab += "<td>"+users[i].name+"</td>"
+
+                        if (users[i].admin) {
+                            tab += "<td>admin</td>"
+                        }
+                        else {
+                            tab += "<td></td>"
+                        }
+
+                        if (users[i].role === 0) {
+                            tab += "<td>学生</td>"
+                        } else if (users[i].role === 1) {
+                            tab += "<td>老师</td>"
+                        } else if (users[i].role === 2) {
+                            tab += "<td>其他</td>"
+                        }
+
+                        tab += "<td>"+new Date(users[i].last_activity).toLocaleString()+"</td>"
+
+                        if (!users[i].server) {
+                            tab += "<td style=\"text-align:center;\"><button class=\"btn btn-primary\" onclick='start_server(this)'>start server</button></td>"
+                            tab += "<td></td>"
+                        } else {
+                            tab += "<td style=\"text-align:center;\"><button class=\"btn btn-warning\" onclick='stop_server(this)'>stop server</button></td>"
+                            tab += "<td style=\"text-align:center;\"><button class=\"btn btn-success\" onclick='access_server(this)'>access server</button></td>"
+                        }
+                        tab += "<td style=\"text-align:center\"><button class=\"btn btn-info\" onclick='edit_user(this)'>edit</button></td>"
+                        tab += "<td style=\"text-align:center\"><button class=\"btn btn-danger\" onclick='delete_user(this)'>delete</button></td>"
+
+                        tab += "</tr>"
+                    }
+                    tbody.innerHTML = tab
+                }
+                else {
+                    alert(result.data)
+                }
+
+            },
+            //请求失败，包含具体的错误信息
+            error : function(e){
+                console.log(e)
+            },
+            compete : function (e) {
+            }
+        });
+    }
+
+    function start_server(obj) {
+        // console.log(obj)
+        var tr = obj.parentElement.parentElement
+        var name = tr.childNodes[0].innerText
+        // console.log(name)
+        var url = "/api/users/" + name + "/spawn"
+        window.open(url)
+    }
+    function stop_server(obj) {
+        // console.log(obj)
+        var tr = obj.parentElement.parentElement
+        var name = tr.childNodes[0].innerText
+        $.ajax({
+            //请求方式
+            type : "DELETE",
+            url:"/api/users/" + name + "/server",
+            crossDomain: true,
+            // beforeSend: function(xhr) {
+            //     xhr.setRequestHeader("Authorization:'token 333943de7dbe4703a0b9ccf779cdccaf'");
+            // },
+            headers:{'Content-Type':'application/json;charset=utf8','token':token},
+            //请求成功
+            success : function(result) {
+                if (result.code === 0) {
+                    console.log(result)
+                    // alert("delete succeed")
+                    swal({
+                        title: 'success',
+                        icon: 'success',
+                    }).then(function () {
+                        location.reload()
+                    })
+                }
+                else {
+                    swal("failed", "", "error")
+
+                }
+            },
+            //请求失败，包含具体的错误信息
+            error : function(e){
+                console.log(e)
+            },
+            compete : function (e) {
+            }
+        });
+    }
+    //当个选择的选中与取消
+    function changeStatus(obj){
+
+        if (obj.value === "on") {
+            obj.value = "off"
+            obj.checked = false
+        }
+        else {
+            obj.value = "on"
+            obj.checked = true
+        }
+    }
+
+    function access_server(obj) {
+        // console.log(obj)
+        var tr = obj.parentElement.parentElement
+        var name = tr.childNodes[0].innerText
+        // console.log(name)
+        var url = "/api/users/" + name + "/access"
+        window.open(url)
+    }
+    function edit_user(obj) {
+        var tr = obj.parentElement.parentElement
+        var name = tr.childNodes[0].innerText
+        var isAdmin
+        if(tr.childNodes[1].innerText === "") {
+            isAdmin = false
+        } else {
+            isAdmin = true
+        }
+        var username = document.createElement("input")
+        username.value = name
+        var admin = document.createElement("input")
+        admin.type = "radio"
+        admin.name = "admin-radio"
+        admin.id = "admin-radio"
+
+        admin.setAttribute("onclick", "changeStatus(this)")
+        if (isAdmin) {
+            admin.value = "on"
+            admin.checked = true
+        } else {
+            admin.value = "off"
+            admin.checked = false
+        }
+        var div = document.createElement("div")
+        username.style.margin = "0.1cm"
+        username.style.width = "280px"
+        admin.style.margin = "0.2cm"
+        div.style.cssText = "text-align:left; padding:0.5cm 2cm"
+        div.appendChild(username)
+        div.append(document.createElement('br'))
+        div.appendChild(admin)
+        div.append("admin")
+
+
+        swal({
+            content: div,
+            buttons: {
+                cancel: true,
+                confirm: true,
+            },
+        }).then(function () {
+            var val = admin.checked
+            if (username.value !== name || val !== isAdmin) {
+                var data = {}
+                data['newName'] = username.value
+                data['admin'] = val
+                $.ajax({
+                    //请求方式
+                    type : "PATCH",
+                    url:"/api/users/" + name,
+                    crossDomain: true,
+                    // beforeSend: function(xhr) {
+                    //     xhr.setRequestHeader("Authorization:'token 333943de7dbe4703a0b9ccf779cdccaf'");
+                    // },
+                    data: JSON.stringify(data),
+                    dataType: 'json',
+
+                    headers:{'Content-Type':'application/merge-patch+json;charset=utf8','token':token},
+                    //请求成功
+                    success : function(result) {
+                        if (result.code === 0) {
+                            console.log(result)
+                            // alert("delete succeed")
+                            swal({
+                                title: 'success',
+                                icon: 'success',
+                            }).then(function () {
+                                location.reload()
+                            })
+                        }
+                        else {
+                            swal("failed", "", "error")
+                            console.log(data)
+
+                        }
+                    },
+                    //请求失败，包含具体的错误信息
+                    error : function(e){
+                        swal("failed", "", "error")
+                        console.log(data)
+                    },
+                    compete : function (e) {
+                    }
+                });
+            }
+            // } else {
+            //     // console.log(username.value)
+            //     // console.log(val)
+
+        });
+
+    }
+
+    function add_user(obj) {
+
+        var username = document.createElement("input")
+        var password = document.createElement("input")
+        password.type = "password"
+
+        var div = document.createElement("div")
+        username.style.margin = "0.1cm"
+        username.style.width = "210px"
+        password.style.margin = "0.1cm"
+        password.style.width = "210px"
+        // admin.style.margin = "0.2cm"
+        password.style.paddingBottom = "5px"
+        div.style.cssText = "text-align:right; padding:0.5cm 2cm"
+
+        div.append("用户名:")
+        div.appendChild(username)
+        div.append(document.createElement('br'))
+        // div.appendChild(span2)
+        div.append("密码:")
+        div.appendChild(password)
+        // div.append("admin")
+        div.append(document.createElement('br'))
+        div.append("身份:")
+        var stu = document.createElement("label")
+        stu.innerHTML = "<input name=\"role\" type=\"radio\" value=\"0\" /> 学生  "
+        stu.style.cssText = "padding-left:15px; width = 70px"
+        var tea = document.createElement("label")
+        tea.innerHTML = "<input name=\"role\" type=\"radio\" value=\"1\" /> 老师  "
+        tea.style.cssText = "padding-left:15px; width = 70px"
+        var oth = document.createElement("label")
+        oth.innerHTML = "<input name=\"role\" type=\"radio\" value=\"2\" /> 其他  "
+        oth.style.cssText = "padding-left:15px; width = 70px; padding-right:16px"
+        div.appendChild(stu).appendChild(tea).appendChild(oth)
+
+
+        swal({
+            content: div,
+            buttons: {
+                cancel: true,
+                confirm: true,
+            },
+        }).then(function (isConfirm) {
+
+            var data = {};
+            data["password"] = password.value
+            data["role"] = $('input:radio:checked').val()
+            data["blocked"] = 0
+
+            // console.log(data["role"])
+
+            if (isConfirm) {
+                $.ajax({
+                    //请求方式
+                    type : "POST",
+                    url:"/api/users/" + username.value,
+                    crossDomain: true,
+                    data: JSON.stringify(data),
+                    dataType: 'json',
+
+                    headers:{'Content-Type':'application/merge-patch+json;charset=utf8','token':token},
+                    //请求成功
+                    success : function(result) {
+                        if (result.code === 0) {
+                            console.log(result)
+                            // alert("delete succeed")
+                            swal({
+                                title: 'success',
+                                icon: 'success',
+                            }).then(function () {
+                                location.reload()
+                            })
+                        }
+                        else {
+                            swal("failed", "", "error")
+                            // console.log(data)
+
+                        }
+                    },
+                    //请求失败，包含具体的错误信息
+                    error : function(e){
+                        swal("failed", "", "error")
+                        // console.log(data)
+                    },
+                    compete : function (e) {
+                    }
+                });
+            }
+        })
+
+    }
+    function delete_user(obj) {
+        // console.log(obj)
+        var tr = obj.parentElement.parentElement
+        var name = tr.childNodes[0].innerText
+        $.ajax({
+            //请求方式
+            type : "DELETE",
+            url:"/api/users/" + name,
+            crossDomain: true,
+            // beforeSend: function(xhr) {
+            //     xhr.setRequestHeader("Authorization:'token 333943de7dbe4703a0b9ccf779cdccaf'");
+            // },
+            headers:{'Content-Type':'application/json;charset=utf8','token':token},
+            //请求成功
+            success : function(result) {
+                if (result.code === 0) {
+                    console.log(result)
+                    // alert("delete succeed")
+                    swal({
+                        title: 'success',
+                        icon: 'success',
+                    }).then(function () {
+                        location.reload()
+                    })
+                }
+                else {
+                    swal("failed", "", "error")
+
+                }
+            },
+            //请求失败，包含具体的错误信息
+            error : function(e){
+                console.log(e)
+            },
+            compete : function (e) {
+            }
+        });
+    }
+
+</script>
+</body>
+</html>

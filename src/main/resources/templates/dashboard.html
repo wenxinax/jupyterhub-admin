@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AdminLTE 3 | Simple Tables</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../dist/css/adminlte.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <!-- SweetAlert -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+</head>
+<body class="hold-transition layout-top-nav">
+<div class="wrapper">
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
+        <div class="container-fluid">
+            <a href="/dashboard" class="navbar-brand">
+            <img src="../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+                 style="opacity: .8;">
+            <span class="brand-text font-weight-light">Jupyterhub</span>
+        </a>
+
+            <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse order-3" id="navbarCollapse">
+                <!-- Left navbar links -->
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a href="/dashboard" class="nav-link">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/users" class="nav-link">Users</a>
+                    </li>
+
+                </ul>
+
+                <!-- SEARCH FORM -->
+            </div>
+
+        </div>
+    </nav>
+    <!-- /.navbar -->
+<!--    &lt;!&ndash; Navbar &ndash;&gt;-->
+<!--    <nav class="main-header navbar navbar-expand navbar-white navbar-light">-->
+<!--        &lt;!&ndash; Left navbar links &ndash;&gt;-->
+<!--        <ul class="navbar-nav">-->
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>-->
+<!--            </li>-->
+<!--            <li class="nav-item d-none d-sm-inline-block">-->
+<!--                <a href="/dashboard" class="nav-link">Dashboard</a>-->
+<!--            </li>-->
+<!--            <li class="nav-item d-none d-sm-inline-block">-->
+<!--                <a href="/users" class="nav-link">Users</a>-->
+<!--            </li>-->
+<!--        </ul>-->
+
+<!--    </nav>-->
+<!--    &lt;!&ndash; /.navbar &ndash;&gt;-->
+
+<!--    <aside class="main-sidebar sidebar-dark-primary elevation-4 ">-->
+<!--        &lt;!&ndash; Brand Logo &ndash;&gt;-->
+<!--        <a href="/dashboard" class="brand-link">-->
+<!--            <img src="../../dist/img/AdminLTELogo.png"-->
+<!--                 alt="AdminLTE Logo"-->
+<!--                 class="brand-image img-circle elevation-3"-->
+<!--                 style="opacity: .8">-->
+<!--            <span class="brand-text font-weight-light">for<b>JupyterHub</b></span>-->
+<!--        </a>-->
+
+<!--        &lt;!&ndash; Sidebar &ndash;&gt;-->
+<!--        <div class="sidebar">-->
+<!--            &lt;!&ndash; Sidebar user (optional) &ndash;&gt;-->
+<!--            <div class="user-panel mt-3 pb-3 mb-3 d-flex">-->
+<!--                <div class="image">-->
+<!--                    <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">-->
+<!--                </div>-->
+<!--                <div class="info">-->
+<!--                    <a href="#" class="d-block">Admin</a>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            &lt;!&ndash; Sidebar Menu &ndash;&gt;-->
+<!--            <nav class="mt-2">-->
+<!--                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">-->
+<!--                    &lt;!&ndash; Add icons to the links using the .nav-icon class-->
+<!--                         with font-awesome or any other icon font library &ndash;&gt;-->
+<!--                    <li class="nav-item has-treeview">-->
+<!--                        <a href="/dashboard" class="nav-link active" >-->
+<!--                            <i class="nav-icon fas fa-tachometer-alt"></i>-->
+<!--                            <p>-->
+<!--                                Dashboard-->
+<!--                                <i class="right fas fa-angle-left"></i>-->
+<!--                            </p>-->
+<!--                        </a>-->
+<!--                    </li>-->
+
+<!--                    <li class="nav-item has-treeview ">-->
+<!--                        <a href="/users" class="nav-link ">-->
+<!--                            <i class="nav-icon fas fa-table"></i>-->
+<!--                            <p>-->
+<!--                                Users-->
+<!--                                <i class="fas fa-angle-left right"></i>-->
+<!--                            </p>-->
+<!--                        </a>-->
+<!--                    </li>-->
+
+<!--                </ul>-->
+<!--            </nav>-->
+<!--            &lt;!&ndash; /.sidebar-menu &ndash;&gt;-->
+<!--        </div>-->
+<!--        &lt;!&ndash; /.sidebar &ndash;&gt;-->
+<!--    </aside>-->
+
+    <div class="content-wrapper"  style="padding-right: 20px;padding-left: 20px">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0 text-dark">Dashboard</h1>
+                    </div><!-- /.col -->
+<!--                    <div class="col-sm-6">-->
+<!--                        <ol class="breadcrumb float-sm-right">-->
+<!--                            <li class="breadcrumb-item"><a href="#">Home</a></li>-->
+<!--                            <li class="breadcrumb-item active">Dashboard v2</li>-->
+<!--                        </ol>-->
+<!--                    </div>&lt;!&ndash; /.col &ndash;&gt;-->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <!-- Info boxes -->
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="card card-cyan">
+                            <div class="card-header border-0">
+                                <h3 class="card-title">用户总数</h3>
+                                <div class="card-tools">
+                                    <span class="badge bg-white">Users</span>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <p class="d-flex flex-column">
+                                        <span class="text-bold text-xl text-cyan" id="user-count">-</span>
+                                        <span class="text-cyan text-sm">All Users</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="card card-cyan">
+                            <div class="card-header border-0">
+                                <h3 class="card-title">在线容器</h3>
+                                <div class="card-tools">
+                                    <span class="badge bg-yellow">Online</span>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <p class=" d-flex flex-column">
+                                        <span class="text-bold text-xl text-cyan" id="container-count">-</span>
+                                        <span class="text-cyan text-sm">Online Containers</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 text-center">
+                        <div class="card bg-gradient-cyan" >
+                            <div class="card-body"  >
+                                <div class="d-flex" >
+                                    <p class=" d-flex flex-column">
+                     <span style="margin-left: 60px">
+                       <div id="chart4" style="width: 135px;height: 135px;"></div>
+                     </span>
+                                    </p>
+                                    <p class=" d-flex flex-column text-left" style="padding: 20px">
+                                        <span class="text-bold text-lg">节点在线状态</span>
+                                        <span>在线节点: <span id="online-node">-</span></span>
+                                        <span>全部节点: <span id="all-node">-</span></span>
+                                    </p>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-header border-0">
+                                <div class="d-flex justify-content-between">
+                                    <h3 class="card-title">最近活跃用户Top5</h3>
+                                    <a href="/users;">View All</a>
+                                </div>
+                            </div>
+                            <div class="card-body" id="top5users" style="height: 390px;" >
+                                <div class="d-flex" >
+                                    <p class="d-flex flex-column">
+                                        <span class="text-bold text-lg">820</span>
+                                        <span>Visitors Over Time</span>
+                                    </p>
+                                    <p class="ml-auto d-flex flex-column text-left">
+                    <span class="text-success">
+                      <i class="fas fa-arrow-up"></i> 12.5%
+                    </span>
+                                        <span class="text-muted">Since last week</span>
+                                    </p>
+                                </div>
+                                <!-- /.d-flex -->
+
+                                <div class="position-relative mb-4">
+                                    <canvas id="visitors-chart" height="200"></canvas>
+                                </div>
+
+                                <div class="d-flex flex-row justify-content-end">
+                  <span class="mr-2">
+                    <i class="fas fa-square text-primary"></i> This Week
+                  </span>
+
+                                    <span>
+                    <i class="fas fa-square text-gray"></i> Last Week
+                  </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- /.card -->
+                    </div>
+                    <!-- /.col-md-6 -->
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-header border-0">
+                                <div class="d-flex justify-content-between">
+                                    <h3 class="card-title">资源概况</h3>
+                                    <a href="javascript:void(0);">View All</a>
+                                </div>
+                            </div>
+                            <div class="card-body" style="height: 390px;" >
+<!--                                    <p class="text-center">-->
+<!--                                        <strong>Goal Completion</strong>-->
+<!--                                    </p>-->
+
+                                    <div class="progress-group text-lg" style="padding: 16px">
+                                            CPU core
+                                            <span class="float-right" style="text-align: right" id="cpu"><b>160</b>/200</span>
+                                        <div class="progress progress-lg" style="margin-top: 5px">
+                                            <div class="progress-bar bg-primary" style="width: 80%" id="cpu-ratio"></div>
+                                        </div>
+                                    </div>
+                                    <!-- /.progress-group -->
+
+                                    <div class="progress-group text-lg" style="padding: 15px">
+                                        Memory TiB
+                                        <span class="float-right" id="memory"><b>310</b>/400</span>
+                                        <div class="progress progress-lg" style="margin-top: 5px">
+                                            <div class="progress-bar bg-danger" style="width: 75%" id="memory-ratio"></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- /.progress-group -->
+                                    <div class="progress-group text-lg" style="padding: 15px">
+                                        <span class="progress-text">Local Storage TB</span>
+                                        <span class="float-right" id="disk"><b>480</b>/800</span>
+                                        <div class="progress progress-lg" style="margin-top: 5px">
+                                            <div class="progress-bar bg-success" style="width: 60%" id="disk-ratio"></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- /.progress-group -->
+                                    <div class="progress-group text-lg" style="padding: 15px">
+                                        Pod
+                                        <span class="float-right" id="pod"><b>250</b>/500</span>
+                                        <div class="progress progress-lg" style="margin-top: 5px">
+                                            <div class="progress-bar bg-warning" style="width: 50%" id="pod-ratio"></div>
+                                        </div>
+                                    </div>
+                                    <!-- /.progress-group -->
+                            </div>
+                        </div>
+                        <!-- /.card -->
+
+                    </div>
+                    <!-- /.col-md-6 -->
+                </div>
+
+            </div><!--/. container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>
+
+    <!-- /.content-wrapper -->
+    <footer class="main-footer">
+        <div class="float-right d-none d-sm-block">
+            <b>Version</b> 1.0.0-pre
+        </div>
+<!--        <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights-->
+<!--        reserved.-->
+    </footer>
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<script src="../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../dist/js/demo.js"></script>
+<!--<script src="../dist/js/pages/dashboard2.js"></script>-->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat/dist/ecStat.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/dataTool.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/china.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/world.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/bmap.min.js"></script>
+<script>
+    function drawChart(total, online) {
+        var offline = total - online
+        var e=80;
+        var dext = online + "/" + total;
+        var Chart4 = echarts.init(document.getElementById('chart4'));
+        option = {
+
+            color: [  '#F0F8FF', '#91c7ae'],
+            title: {
+                text: dext,
+                textStyle:{
+                    //文字颜色
+                    color:'#F0F8FF',
+                    //字体风格,'normal','italic','oblique'
+                    fontStyle:'normal',
+                    //字体粗细 'normal','bold','bolder','lighter',100 | 200 | 300 | 400...
+                    fontWeight:'bold',
+                    //字体系列
+                    fontFamily:'sans-serif',
+                    //字体大小
+                    fontSize:18
+                },
+                x: 'center',
+                y: 'center',
+                top: 55,
+
+            },
+            series: [
+                {
+                    name: '在线节点',
+                    type: 'pie',
+                    radius: ['50%', '85%'],
+                    avoidLabelOverlap: false,
+                    label: {
+                        show: false,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        label: {
+                            show: false,
+                            fontSize: '15',
+                            fontWeight: 'bold'
+                        }
+                    },
+                    labelLine: {
+                        show: false
+                    },
+                    data: [
+                        {value: online, name: '在线节点'},
+                        {value: offline, name: '不在线节点'},
+                    ]
+                }
+            ]
+        };
+        Chart4.setOption(option);
+    }
+</script>
+<script>
+    var token = localStorage.getItem("token")
+    getTop5Users()
+    initUserCount()
+    initNode()
+    initCluster()
+    function initCluster() {
+        $.ajax({
+            //请求方式
+            type : "GET",
+            url:"/api/monitor/cluster",
+            // beforeSend: function(xhr) {
+            //     xhr.setRequestHeader("Authorization:'token 333943de7dbe4703a0b9ccf779cdccaf'");
+            // },
+            headers:{'Content-Type':'application/json;charset=utf8','token':token},
+            //请求成功
+            success : function(result) {
+                // console.log(result)
+                var res = result.results
+                console.log(res)
+                var totalNode;
+                var onlineNode;
+                var totalCpu;
+                var usageCpu;
+                var totalMem;
+                var usageMem;
+                var totalPod;
+                var usagePod;
+                var totalDisk;
+                var usageDisk;
+                var cpuUti;
+                var memUti;
+                var podUti;
+                var diskUti;
+                for (var i in res){
+                    // console.log(res[i])
+                    if (res[i].metric_name === "cluster_node_total") {
+                        // console.log("okk")
+                        totalNode = res[i].data.result[0].value[1]
+                    }
+
+                    if (res[i].metric_name === "cluster_node_online") {
+                        onlineNode = res[i].data.result[0].value[1]
+                    }
+
+                    if (res[i].metric_name === "cluster_cpu_total") {
+                        totalCpu = res[i].data.result[0].value[1]
+                    }
+                    if (res[i].metric_name === "cluster_cpu_usage") {
+                        usageCpu = res[i].data.result[0].value[1]
+                        // usageCpu =  Number(usageCpu.toString().match(/^\d+(?:\.\d{0,2})?/));
+                        usageCpu = keepTwoDecimal(usageCpu)
+
+                    }
+                    if (res[i].metric_name === "cluster_cpu_utilisation") {
+                        cpuUti = res[i].data.result[0].value[1] * 100
+                    }
+
+                    if (res[i].metric_name === "cluster_memory_total") {
+                        totalMem = res[i].data.result[0].value[1] / 1024 /1024 /1024 /1024
+                        // totalMem = Number(totalMem.toString().match(/^\d+(?:\.\d{0,2})?/));
+                        totalMem = keepTwoDecimal(totalMem)
+                    }
+                    if (res[i].metric_name === "cluster_memory_usage_wo_cache") {
+                        usageMem = res[i].data.result[0].value[1] / 1024 /1024 /1024 /1024
+                        // usageMem = Number(usageMem.toString().match(/^\d+(?:\.\d{0,2})?/));
+                        usageMem = keepTwoDecimal(usageMem)
+
+                    }
+                    if (res[i].metric_name === "cluster_memory_utilisation") {
+                        memUti = res[i].data.result[0].value[1] * 100
+                    }
+
+                    if (res[i].metric_name === "cluster_pod_quota") {
+                        totalPod = res[i].data.result[0].value[1]
+                    }
+                    if (res[i].metric_name === "cluster_pod_running_count") {
+                        usagePod = res[i].data.result[0].value[1]
+                    }
+                    if (res[i].metric_name === "cluster_pod_utilisation") {
+                        podUti = res[i].data.result[0].value[1] * 100
+                    }
+
+                    if (res[i].metric_name === "cluster_disk_size_capacity") {
+                        totalDisk = res[i].data.result[0].value[1] / 1000 /1000 /1000 /1000
+                        // totalDisk = Number(totalDisk.toString().match(/^\d+(?:\.\d{0,2})?/));
+                        totalDisk = keepTwoDecimal(totalDisk)
+                    }
+                    if (res[i].metric_name === "cluster_disk_size_usage") {
+                        usageDisk = res[i].data.result[0].value[1] / 1000 /1000 /1000 /1000
+                        // usageDisk = Number(usageDisk.toString().match(/^\d+(?:\.\d{0,2})?/));
+                        usageDisk = keepTwoDecimal(usageDisk)
+                    }
+                    if (res[i].metric_name === "cluster_disk_size_utilisation") {
+                        diskUti = res[i].data.result[0].value[1] * 100
+                    }
+                }
+                // console.log(totalNode)
+                // console.log(onlineNode)
+                drawChart(totalNode,onlineNode)
+                document.getElementById("online-node").innerText = onlineNode
+                document.getElementById("all-node").innerText = totalNode
+                document.getElementById("cpu").innerHTML = "<b>"+usageCpu+"</b>"+"/" + totalCpu
+                document.getElementById("cpu-ratio").style.width = cpuUti + "%"
+
+                document.getElementById("memory").innerHTML = "<b>"+usageMem+"</b>"+"/" + totalMem
+                document.getElementById("memory-ratio").style.width = memUti + "%"
+
+                document.getElementById("pod").innerHTML = "<b>"+usagePod+"</b>"+"/" + totalPod
+                document.getElementById("pod-ratio").style.width = podUti + "%"
+
+                document.getElementById("disk").innerHTML = "<b>"+usageDisk+"</b>"+"/" + totalDisk
+                document.getElementById("disk-ratio").style.width = diskUti + "%"
+
+                // console.log(cpuUti)
+                // console.log(totalCpu)
+                // console.log(usageCpu)
+
+
+
+            },
+            //请求失败，包含具体的错误信息
+            error : function(e){
+                console.log(e)
+            },
+            compete : function (e) {
+            }
+        });
+    }
+    function initNode() {
+        $.ajax({
+            //请求方式
+            type : "GET",
+            url:"/api/monitor/nodes",
+            crossDomain: true,
+            // beforeSend: function(xhr) {
+            //     xhr.setRequestHeader("Authorization:'token 333943de7dbe4703a0b9ccf779cdccaf'");
+            // },
+            headers:{'Content-Type':'application/json;charset=utf8','token':token},
+            //请求成功
+            success : function(result) {
+                console.log(result)
+
+
+            },
+            //请求失败，包含具体的错误信息
+            error : function(e){
+                console.log(e)
+            },
+            compete : function (e) {
+            }
+        });
+    }
+    function getTop5Users() {
+        $.ajax({
+            //请求方式
+            type : "GET",
+            url:"/api/users",
+            crossDomain: true,
+            // beforeSend: function(xhr) {
+            //     xhr.setRequestHeader("Authorization:'token 333943de7dbe4703a0b9ccf779cdccaf'");
+            // },
+            headers:{'Content-Type':'application/json;charset=utf8','token':token},
+            //请求成功
+            success : function(result) {
+                console.log(result)
+                if (result.code === 0) {
+                    var users = result.data.users;
+                    users.sort(function (a, b) {
+                        return new Date(b.last_activity) - new Date(a.last_activity)
+                    })
+                    console.log(users)
+                    var card = document.getElementById("top5users")
+                    var l;
+                    if(users.length <= 5) {
+                        l = users.length;
+                    } else {
+                        l = 5;
+                    }
+                    var p = "";
+                    for(var i = 0; i < l; i++){
+                        var difftime = new Date().getTime()  - new Date(users[i].last_activity).getTime();
+                        difftime /= 1000;
+                        var d = parseInt(difftime/86400); // 天  24*60*60*1000
+                        var h = parseInt(difftime/3600)-24*d;    // 小时 60*60 总小时数-过去的小时数=现在的小时数
+                        var mins = parseInt(difftime%3600/60); // 分钟 -(day*24) 以60秒为一整份 取余 剩下秒数 秒数/60 就是分钟数
+                        var secs = parseInt(difftime%60);  // 以60秒为一整份 取余 剩下秒数
+                        var ts = "";
+                        if (d !== 0){
+                            ts += d + " days "
+                            ts += h + " hours ago"
+                        } else if (h !== 0) {
+                            ts += h + " hours "
+                            ts += mins + " minutes ago"
+                        } else if (mins !== 0) {
+                            ts += mins + " minutes "
+                            ts += secs + " seconds ago"
+                        } else if (secs !== 0 ){
+                            ts += secs + " seconds ago"
+                        } else {
+                            ts = "a few seconds ago"
+                        }
+                        p += "                <div class=\"d-flex\">\n" +
+                            "                  <p class=\"d-flex flex-column\">\n" +
+                            "                    <span class=\"text-bold text-lg\">"+users[i].name+"</span>\n" +
+                            "                    <span>"+new Date(users[i].last_activity).toLocaleString()+"</span>\n" +
+                            "                  </p>\n" +
+                            "                  <p class=\"ml-auto d-flex flex-column text-right\">\n" +
+                            // "                    <span class=\"text-success\">\n" +
+                            // "                      <i class=\"fas fa-arrow-up\"></i> 33.1%\n" +
+                            // "                    </span>\n" +
+                            "                    <span class=\"text-muted\">"+ts+"</span>\n" +
+                            "                  </p>\n" +
+                            "                </div>"
+                    }
+                    card.innerHTML = p;
+                }
+                else {
+                    alert(result.data)
+                }
+
+            },
+            //请求失败，包含具体的错误信息
+            error : function(e){
+                console.log(e)
+            },
+            compete : function (e) {
+            }
+        });
+    }
+    function initUserCount() {
+        $.ajax({
+            //请求方式
+            type : "GET",
+            url:"/api/users",
+            crossDomain: true,
+            headers:{'Content-Type':'application/json;charset=utf8','token':token},
+            //请求成功
+            success : function(result) {
+                console.log(result)
+                if (result.code === 0) {
+                    var users = result.data.users;
+                    var total = 0
+                    var online = 0
+                    for (var i in users)
+                    {
+                        total ++
+
+
+                        if (users[i].server) {
+                            online ++
+                        }
+                    }
+                    document.getElementById("container-count").innerText = online.toString()
+                    document.getElementById("user-count").innerText = total.toString()
+
+                }
+                else {
+                    // alert(result.data)
+                }
+
+            },
+            //请求失败，包含具体的错误信息
+            error : function(e){
+                console.log(e)
+            },
+            compete : function (e) {
+            }
+        });
+    }
+
+    function keepTwoDecimal(num) {
+        var result = parseFloat(num);
+        if (isNaN(result)) {
+            alert('传递参数错误，请检查！');
+            return false;
+        }
+        result = Math.round(num * 100) / 100;
+        return result;
+    };
+</script>
+
+</body>
+</html>
