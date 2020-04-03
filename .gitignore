@@ -3,3 +3,4 @@ target/
 .idea/
 .mvn
 out/
+.DS_Store
