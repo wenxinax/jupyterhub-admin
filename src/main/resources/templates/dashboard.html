@@ -406,22 +406,25 @@
     var token = localStorage.getItem("token")
     getTop5Users()
     initUserCount()
-    initNode()
+    // initNode()
     initCluster()
     function initCluster() {
+
         $.ajax({
             //请求方式
             type : "GET",
+            // async:false,
             url:"/api/monitor/cluster",
             // beforeSend: function(xhr) {
             //     xhr.setRequestHeader("Authorization:'token 333943de7dbe4703a0b9ccf779cdccaf'");
             // },
             headers:{'Content-Type':'application/json;charset=utf8','token':token},
+            dataType: "json",
             //请求成功
             success : function(result) {
                 // console.log(result)
                 var res = result.results
-                console.log(res)
+                console.log(result)
                 var totalNode;
                 var onlineNode;
                 var totalCpu;
@@ -441,6 +444,8 @@
                     if (res[i].metric_name === "cluster_node_total") {
                         // console.log("okk")
                         totalNode = res[i].data.result[0].value[1]
+                        console.log(totalNode + "hhh")
+
                     }
 
                     if (res[i].metric_name === "cluster_node_online") {
@@ -498,9 +503,11 @@
                     if (res[i].metric_name === "cluster_disk_size_utilisation") {
                         diskUti = res[i].data.result[0].value[1] * 100
                     }
+                    // console.log(i)
                 }
                 // console.log(totalNode)
-                // console.log(onlineNode)
+
+                    // 这里写sleep之后需要去做的事情
                 drawChart(totalNode,onlineNode)
                 document.getElementById("online-node").innerText = onlineNode
                 document.getElementById("all-node").innerText = totalNode
@@ -516,9 +523,6 @@
                 document.getElementById("disk").innerHTML = "<b>"+usageDisk+"</b>"+"/" + totalDisk
                 document.getElementById("disk-ratio").style.width = diskUti + "%"
 
-                // console.log(cpuUti)
-                // console.log(totalCpu)
-                // console.log(usageCpu)
 
 
 
@@ -527,34 +531,37 @@
             error : function(e){
                 console.log(e)
             },
-            compete : function (e) {
+            compete : function (XMLHttpRequest) {
             }
         });
     }
-    function initNode() {
-        $.ajax({
-            //请求方式
-            type : "GET",
-            url:"/api/monitor/nodes",
-            crossDomain: true,
-            // beforeSend: function(xhr) {
-            //     xhr.setRequestHeader("Authorization:'token 333943de7dbe4703a0b9ccf779cdccaf'");
-            // },
-            headers:{'Content-Type':'application/json;charset=utf8','token':token},
-            //请求成功
-            success : function(result) {
-                console.log(result)
-
-
-            },
-            //请求失败，包含具体的错误信息
-            error : function(e){
-                console.log(e)
-            },
-            compete : function (e) {
-            }
-        });
-    }
+    // function initNode() {
+    //     $.ajax({
+    //         //请求方式
+    //         type : "GET",
+    //         url:"/api/monitor/nodes",
+    //         crossDomain: true,
+    //         // beforeSend: function(xhr) {
+    //         //     xhr.setRequestHeader("Authorization:'token 333943de7dbe4703a0b9ccf779cdccaf'");
+    //         // },
+    //         headers:{'Content-Type':'application/json;charset=utf8','token':token},
+    //         //请求成功
+    //         success : function(result) {
+    //             console.log(result)
+    //
+    //
+    //         },
+    //         //请求失败，包含具体的错误信息
+    //         error : function(e){
+    //             console.log(e)
+    //         },
+    //         compete : function (e) {
+    //         }
+    //     });
+    // }
+    // function sleep (time) {
+    //     return new Promise((resolve) => setTimeout(resolve, time));
+    // }
     function getTop5Users() {
         $.ajax({
             //请求方式

@@ -1,10 +1,8 @@
 package com.sysu.jupyterhubadmin.kubesphere;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.sysu.jupyterhubadmin.component.ConfigBeanKsapi;
-import com.sysu.jupyterhubadmin.component.ConfigBeanKube;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -20,6 +18,7 @@ public class KsApiRequest {
     ConfigBeanKsapi configBeanKsapi;
     @Autowired
     private RestTemplate restTemplate;
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(KsApiRequest.class);
 
     private HttpEntity<String> entity() {
         HttpHeaders headers = new HttpHeaders();
@@ -51,6 +50,7 @@ public class KsApiRequest {
         try {
             ResponseEntity<String> results = restTemplate.exchange(url, HttpMethod.GET, entity(), String.class);
             JSONObject json = JSON.parseObject(results.getBody());
+//            log.info(">>"+json.toJSONString());
             return json;
         }
         catch (HttpClientErrorException e) {
@@ -60,8 +60,7 @@ public class KsApiRequest {
                 this.setToken();
                 return this.getNodes();
             }
-//            JSONObject json = JSON.parseObject(e.getResponseBodyAsString());
-//            System.out.println(e.getMessage());
+
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("code", -1);
             jsonObject.put("msg", e.getMessage());
@@ -75,17 +74,14 @@ public class KsApiRequest {
         try {
             ResponseEntity<String> results = restTemplate.exchange(url, HttpMethod.GET, entity(), String.class);
             JSONObject json = JSON.parseObject(results.getBody());
+            log.info(json.toJSONString());
             return json;
         }
         catch (HttpClientErrorException e) {
-//            System.out.println(e.getStatusCode());
             if (e.getStatusCode().toString().equals("401 UNAUTHORIZED")) {
-//                System.out.println("hh");
                 this.setToken();
-                return this.getNodes();
+                return this.getCluster();
             }
-//            JSONObject json = JSON.parseObject(e.getResponseBodyAsString());
-//            System.out.println(e.getMessage());
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("code", -1);
             jsonObject.put("msg", e.getMessage());
