@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>JupyterHub Admin Dashboard</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="../plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <!-- SweetAlert -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+</head>
+<body class="hold-transition layout-top-nav">
+<div class="wrapper">
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
+        <div class="container-fluid">
+            <a href="/dashboard" class="navbar-brand">
+                <img src="../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+                     style="opacity: .8;">
+                <span class="brand-text font-weight-light">Jupyterhub</span>
+            </a>
+
+            <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse order-3" id="navbarCollapse">
+                <!-- Left navbar links -->
+                <ul class="navbar-nav">
+                    <li class="nav-item ">
+                        <a href="/dashboard" class="nav-link">Dashboard</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="/nodes" class="nav-link">Nodes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/users" class="nav-link">Users</a>
+                    </li>
+
+                </ul>
+
+                <!-- SEARCH FORM -->
+            </div>
+
+        </div>
+    </nav>
+    <div class="content-wrapper"  style="padding-right: 20px;padding-left: 20px">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0 text-dark">Nodes</h1>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <table id="example1" class="table table-striped">
+                                    <thead class="table-head-fixed">
+                                    <tr>
+                                        <th class="" style="width: 8%"></th>
+                                        <th class="" style="width: 15%"><span>Nodes</span></th>
+                                        <th class="" style="width: 12%" data-sorter="sortHander"><span>CPU</span></th>
+                                        <th class="" style="width: 12%"><span class="">Load Average</span></th>
+                                        <th class="" style="width: 15%" data-sorter="sortHander"><span>Memory</span></th>
+                                        <th class="" style="width: 15%" data-sorter="sortHander"><span>Local Storage</span></th>
+                                        <th class="" style="width: 15%" data-sorter="sortHander"><span>inode Utilization</span></th>
+                                        <th class="" style="width: 13%" data-sorter="sortHander"><span>Pods</span></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="" id="tbody">
+<!--                                    <tr class="table-row table-row-level-0" data-row-key="0" >-->
+<!--                                        <td class="" style="text-align:center;vertical-align:middle;">-->
+<!--                                            <i class="fa fa-server" style="font-size:70px" aria-hidden="true"></i>-->
+<!--                                        </td>-->
+<!--                                        <td class=""><div><h3><a>11.11.11.31</a></h3><p>11.11.11.31</p></div></td>-->
+<!--                                        <td class=""><div><h3>52%</h3><div>33.12 / 64 core</div></div></td>-->
+<!--                                        <td class=""><div><h3>1.00</h3></div></td><td class=""><div><h3>16%</h3><div>19.48 / 125.55 GiB</div></div></td>-->
+<!--                                        <td class=""><div><h3>12%</h3><div>111.82 / 941.65 GB</div></div></td>-->
+<!--                                        <td class=""><div><h3>3%</h3><div>1571172 / 58523648</div></div></td>-->
+<!--                                        <td class=""><div><h3>11%</h3><div>12 / 110</div></div></td>-->
+<!--                                    </tr>-->
+<!--                                    <tr class="table-row table-row-level-0" data-row-key="0">-->
+<!--                                        <td class="" style="text-align:center;vertical-align:middle;">-->
+<!--                                            <i class="fa fa-server" style="font-size:70px" aria-hidden="true"></i>-->
+<!--                                        </td>-->
+<!--                                        <td class=""><div><h3><a>11.11.11.32</a></h3><p>11.11.11.31</p></div></td>-->
+<!--                                        <td class=""><div><h3>53%</h3><div>33.12 / 64 core</div></div></td>-->
+<!--                                        <td class=""><div><h3>2.00</h3></div></td><td class=""><div><h3>16%</h3><div>19.48 / 125.55 GiB</div></div></td>-->
+<!--                                        <td class=""><div><h3>12%</h3><div>111.82 / 941.65 GB</div></div></td>-->
+<!--                                        <td class=""><div><h3>3%</h3><div>1571172 / 58523648</div></div></td>-->
+<!--                                        <td class=""><div><h3>11%</h3><div>12 / 110</div></div></td>-->
+<!--                                    </tr>-->
+<!--                                    <tr class="table-row table-row-level-0" data-row-key="0">-->
+<!--                                        <td class="" style="text-align:center;vertical-align:middle;">-->
+<!--                                            <i class="fa fa-server" style="font-size:70px" aria-hidden="true"></i>-->
+<!--                                        </td>-->
+<!--                                        <td class=""><div><h3><a>11.11.11.33</a></h3><p>11.11.11.31</p></div></td>-->
+<!--                                        <td class=""><div><h3>54%</h3><div>33.12 / 64 core</div></div></td>-->
+<!--                                        <td class=""><div><h3>4.00</h3></div></td><td class=""><div><h3>16%</h3><div>19.48 / 125.55 GiB</div></div></td>-->
+<!--                                        <td class=""><div><h3>12%</h3><div>111.82 / 941.65 GB</div></div></td>-->
+<!--                                        <td class=""><div><h3>3%</h3><div>1571172 / 58523648</div></div></td>-->
+<!--                                        <td class=""><div><h3>11%</h3><div>12 / 110</div></div></td>-->
+<!--                                    </tr>-->
+                                    </tbody>
+<!--                                    <tfoot>-->
+<!--                                    <tr>-->
+<!--                                        <th>Rendering engine</th>-->
+<!--                                        <th>Browser</th>-->
+<!--                                        <th>Platform(s)</th>-->
+<!--                                        <th>Engine version</th>-->
+<!--                                        <th>CSS grade</th>-->
+<!--                                    </tr>-->
+<!--                                    </tfoot>-->
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                    </div>
+                </div>
+
+            </div><!--/. container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>
+
+    <!-- /.content-wrapper -->
+    <footer class="main-footer">
+        <div class="float-right d-none d-sm-block">
+            <b>Version</b> 1.0.0-pre
+        </div>
+        <!--        <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights-->
+        <!--        reserved.-->
+    </footer>
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<script src="../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../dist/js/demo.js"></script>
+<script src="../plugins/datatables/jquery.dataTables.js"></script>
+<script src="../plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+<script src="../plugins/dataTables.sort.plungin.js"></script>
+
+<!--<script src="http://cdn.datatables.net/plug-ins/1.10.20/sorting/absolute.js"></script>-->
+<!--<script src="../dist/js/pages/dashboard2.js"></script>-->
+<!--<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>-->
+<!--<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl/dist/echarts-gl.min.js"></script>-->
+<!--<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat/dist/ecStat.min.js"></script>-->
+<!--<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/dataTool.min.js"></script>-->
+<!--<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/china.js"></script>-->
+<!--<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/world.js"></script>-->
+<!--<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/extension/bmap.min.js"></script>-->
+
+<script>
+    var token = localStorage.getItem("token")
+    initNode()
+    var data = [];
+    function initNode() {
+        $.ajax({
+            //请求方式
+            type : "GET",
+            url:"/api/monitor/nodes",
+            crossDomain: true,
+            // beforeSend: function(xhr) {
+            //     xhr.setRequestHeader("Authorization:'token 333943de7dbe4703a0b9ccf779cdccaf'");
+            // },
+            headers:{'Content-Type':'application/json;charset=utf8','token':token},
+            //请求成功
+            success : function(result) {
+                // console.log(result)
+                var res = result.results
+                console.log(res)
+                for(var i in res)
+                {
+                    if (res[i].metric_name === "node_cpu_total") {
+                        setCpuTotal(res[i].data.result)
+                    } else if (res[i].metric_name === "node_cpu_usage") {
+                        setCpuUsage(res[i].data.result)
+                    } else if (res[i].metric_name === "node_cpu_utilisation") {
+                        setCpuUtil(res[i].data.result)
+                    } else if (res[i].metric_name === "node_memory_total") {
+                        setMemTotal(res[i].data.result)
+                    }else if (res[i].metric_name === "node_memory_available") {
+                        setMemAvi(res[i].data.result)
+                    } else if (res[i].metric_name === "node_memory_utilisation") {
+                        setMemUtil(res[i].data.result)
+                    } else if (res[i].metric_name === "node_disk_size_capacity") {
+                        setDiskTotal(res[i].data.result)
+                    }else if (res[i].metric_name === "node_disk_size_usage") {
+                        setDiskUsage(res[i].data.result)
+                    }else if (res[i].metric_name === "node_disk_size_utilisation") {
+                        setDiskUtil(res[i].data.result)
+                    }else if (res[i].metric_name === "node_disk_inode_total") {
+                        setInodeTotal(res[i].data.result)
+                    }else if (res[i].metric_name === "node_disk_inode_usage") {
+                        setInodeUsage(res[i].data.result)
+                    }else if (res[i].metric_name === "node_disk_inode_utilisation") {
+                        setInodeUtil(res[i].data.result)
+                    }else if (res[i].metric_name === "node_pod_quota") {
+                        setPodTotal(res[i].data.result)
+                    }else if (res[i].metric_name === "node_pod_count") {
+                        setPodUsage(res[i].data.result)
+                    } else if (res[i].metric_name === "node_pod_utilisation") {
+                        setPodUtil(res[i].data.result)
+                    } else if (res[i].metric_name === "node_load5") {
+                        setNodeLoad(res[i].data.result)
+                    }
+                }
+                initTable()
+
+
+            },
+            //请求失败，包含具体的错误信息
+            error : function(e){
+                console.log(e)
+            },
+            compete : function (e) {
+            }
+        });
+    }
+    function initTable() {
+        // console.log(data)
+        var body = ""
+        // //                                    <tr class="table-row table-row-level-0" data-row-key="0" >
+        //     <td class="" style="text-align:center;vertical-align:middle;">
+        //     <i class="fa fa-server" style="font-size:70px" aria-hidden="true"></i>
+        //     </td>
+        //     <td class=""><div><h3><a>11.11.11.31</a></h3><p>11.11.11.31</p></div></td>
+        // <td class=""><div><h3>52%</h3><div>33.12 / 64 core</div></div></td>
+        // <td class=""><div><h3>1.00</h3></div></td><td class=""><div><h3>16%</h3><div>19.48 / 125.55 GiB</div></div></td>
+        // <td class=""><div><h3>12%</h3><div>111.82 / 941.65 GB</div></div></td>
+        // <td class=""><div><h3>3%</h3><div>1571172 / 58523648</div></div></td>
+        // <td class=""><div><h3>11%</h3><div>12 / 110</div></div></td>
+        // </tr>
+        for(var i in data) {
+            var mem = keepTwoDecimal(data[i].node_memory_total - data[i].node_memory_available)
+            body +=  "<tr class=\"table-row table-row-level-0\" data-row-key=\"0\" >"
+            body +=  "<td class=\"\" style=\"text-align:center;vertical-align:middle;\">" +
+                "<i class=\"fa fa-server\" style=\"font-size:70px\" aria-hidden=\"true\"></i></td>"
+            body +=  "<td class=\"\"><div><h3><a>"+data[i].node+"</a></h3><p>"+data[i].node+"</p></div></td>"
+            body +=  "<td  class=\"\"><div><h3>"+data[i].node_cpu_utilisation+"%</h3><div>"+data[i].node_cpu_usage
+                + " / "+data[i].node_cpu_total+" core</div></div></td>"
+            body +=  "<td class=\"\"><div><h3>"+data[i].node_load5+"</h3></div></td>"
+            body +=  "<td class=\"\"><div><h3>"+data[i].node_memory_utilisation+"%</h3><div>"+mem
+                + " / "+data[i].node_memory_total+" GiB</div></div></td>"
+            body += "<td class=\"\"><div><h3>"+data[i].node_disk_size_utilisation+"%</h3><div>"+data[i].node_disk_size_usage
+                + " / "+data[i].node_disk_size_capacity+" GiB</div></div></td>"
+            body += "<td class=\"\"><div><h3>"+data[i].node_disk_inode_utilisation+"%</h3><div>"+data[i].node_disk_inode_usage
+                + " / "+data[i].node_disk_inode_total+"</div></div></td>"
+            body += "<td class=\"\"><div><h3>"+data[i].node_pod_utilisation+"%</h3><div>"+data[i].node_pod_usage
+                + " / "+data[i].node_pod_quota+"</div></div></td>"
+            body += "</tr>"
+            // console.log(body)
+        }
+        document.getElementById("tbody").innerHTML = body
+        console.log("init body success")
+        $('#example1').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "customSort": "customSort",
+            "columnDefs": [ {
+                "orderable": false,
+                "targets": [0]
+            },
+                {
+                    "sType": "html-percent", "aTargets": [2,4,5,6,7]
+                }
+                ],
+            // "aoColumns": [
+            //     null,
+            //     null,
+            //     { "sType": "chinese-string" },//中文排序列
+            //     null,
+            //     { "sType": "number-fate" },//百分率排序
+            //     { "sType": "number-fate" },//百分率排序
+            //     { "sType": "number-fate" },//百分率排序
+            //     { "sType": "number-fate" },//百分率排序
+            //
+            // ]
+            // "striped": true,
+
+        });
+
+    }
+
+    function customSort(sortName, sortOrder, data) {
+
+        var order = sortOrder === 'desc' ? -1 : 1
+        data.sort(function (a, b) {
+            // var valAStr = String(a);
+            // var valBStr = String(valB);
+            // if(valAStr.indexOf("%")>0) {
+            //     valA = +valAStr.split("%")[0];
+            //     valB = +valBStr.split("%")[0];
+            // }
+            // return parseFloat(valA) - parseFloat(valB);
+            alert(v1)
+            var v1 = a[sortName]
+            var v2 = b[sortName]
+            var str1 = String(v1)
+            var str2 = String(v2)
+            console.log(v1)
+            if (v1 ==3) {
+                return -1;
+            }
+            if (v1 > v2) {
+                return 1
+            }
+            return 0
+        })
+    }
+    function  setCpuTotal(arr) {
+        if (data.length === 0) {
+            for (var i in arr) {
+                data.push({node: arr[i].metric.node, node_cpu_total: arr[i].value[1]})
+            }
+        } else {
+            for (var i in arr) {
+                data[i].node_cpu_total = arr[i].value[1]
+            }
+        }
+        // console.log(data)
+    }
+    function setCpuUsage(arr) {
+        if (data.length === 0) {
+            for (var i in arr) {
+                data.push({node: arr[i].metric.node, node_cpu_usage: keepTwoDecimal(arr[i].value[1])})
+            }
+        } else {
+            for (var i in arr) {
+                data[i].node_cpu_usage = keepTwoDecimal(arr[i].value[1])
+            }
+        }
+        // console.log(data)
+    }
+    function setCpuUtil(arr) {
+        if (data.length === 0) {
+            for (var i in arr) {
+                data.push({node: arr[i].metric.node, node_cpu_utilisation: toPercent(arr[i].value[1])})
+            }
+        } else {
+            for (var i in arr) {
+                data[i].node_cpu_utilisation = toPercent(arr[i].value[1])
+            }
+        }
+    }
+    function setMemUtil(arr) {
+        if (data.length === 0) {
+            for (var i in arr) {
+                data.push({node: arr[i].metric.node, node_memory_utilisation: toPercent(arr[i].value[1])})
+            }
+        } else {
+            for (var i in arr) {
+                data[i].node_memory_utilisation = toPercent(arr[i].value[1])
+            }
+        }
+    }
+    function setNodeLoad(arr) {
+
+        if (data.length === 0) {
+            for (var i in arr) {
+                data.push({node: arr[i].metric.node, node_load5: keepTwoDecimal(arr[i].value[1])})
+            }
+        } else {
+            for (var i in arr) {
+                data[i].node_load5 = keepTwoDecimal(arr[i].value[1])
+            }
+        }
+    }
+    function setMemTotal(arr) {
+        if (data.length === 0) {
+            for (var i in arr) {
+                data.push({node: arr[i].metric.node, node_memory_total: keepTwoDecimal(arr[i].value[1]/ 1024 /1024 /1024 )})
+            }
+        } else {
+            for (var i in arr) {
+                data[i].node_memory_total = keepTwoDecimal(arr[i].value[1]/ 1024 /1024 /1024 )
+            }
+        }
+    }
+    function setMemAvi(arr) {
+        if (data.length === 0) {
+            for (var i in arr) {
+                data.push({node: arr[i].metric.node, node_memory_available: keepTwoDecimal(arr[i].value[1]/ 1024 /1024 )})
+            }
+        } else {
+            for (var i in arr) {
+                data[i].node_memory_available = keepTwoDecimal(arr[i].value[1]/ 1024 /1024 /1024 )
+            }
+        }
+    }
+    function setDiskTotal(arr) {
+        if (data.length === 0) {
+            for (var i in arr) {
+                data.push({node: arr[i].metric.node, node_disk_size_capacity: keepTwoDecimal(arr[i].value[1]/ 1000 /1000 /1000)})
+            }
+        } else {
+            for (var i in arr) {
+                data[i].node_disk_size_capacity = keepTwoDecimal(arr[i].value[1]/ 1000 /1000 /1000)
+            }
+        }
+    }
+    function setDiskUsage(arr) {
+        if (data.length === 0) {
+            for (var i in arr) {
+                data.push({node: arr[i].metric.node, node_disk_size_usage: keepTwoDecimal(arr[i].value[1]/ 1000 /1000 /1000)})
+            }
+        } else {
+            for (var i in arr) {
+                data[i].node_disk_size_usage = keepTwoDecimal(arr[i].value[1]/ 1000 /1000 /1000 )
+            }
+        }
+    }
+    function setDiskUtil(arr) {
+        if (data.length === 0) {
+            for (var i in arr) {
+                data.push({node: arr[i].metric.node, node_disk_size_utilisation: toPercent(arr[i].value[1])})
+            }
+        } else {
+            for (var i in arr) {
+                data[i].node_disk_size_utilisation = toPercent(arr[i].value[1])
+            }
+        }
+    }
+    function setInodeTotal(arr) {
+        if (data.length === 0) {
+            for (var i in arr) {
+                data.push({node: arr[i].metric.node, node_disk_inode_total: arr[i].value[1]})
+            }
+        } else {
+            for (var i in arr) {
+                data[i].node_disk_inode_total = arr[i].value[1]
+            }
+        }
+    }
+    function setInodeUsage(arr) {
+        if (data.length === 0) {
+            for (var i in arr) {
+                data.push({node: arr[i].metric.node, node_disk_inode_usage: arr[i].value[1]})
+            }
+        } else {
+            for (var i in arr) {
+                data[i].node_disk_inode_usage = arr[i].value[1]
+            }
+        }
+    }
+    function setInodeUtil(arr) {
+        if (data.length === 0) {
+            for (var i in arr) {
+                data.push({node: arr[i].metric.node, node_disk_inode_utilisation: toPercent(arr[i].value[1])})
+            }
+        } else {
+            for (var i in arr) {
+                data[i].node_disk_inode_utilisation = toPercent(arr[i].value[1])
+            }
+        }
+    }
+    function setPodTotal(arr) {
+        if (data.length === 0) {
+            for (var i in arr) {
+                data.push({node: arr[i].metric.node, node_pod_quota: arr[i].value[1]})
+            }
+        } else {
+            for (var i in arr) {
+                data[i]. node_pod_quota = arr[i].value[1]
+            }
+        }
+    }
+    function setPodUsage(arr) {
+        if (data.length === 0) {
+            for (var i in arr) {
+                data.push({node: arr[i].metric.node, node_pod_usage: arr[i].value[1]})
+            }
+        } else {
+            for (var i in arr) {
+                data[i]. node_pod_usage = arr[i].value[1]
+            }
+        }
+    }
+    function setPodUtil(arr) {
+        if (data.length === 0) {
+            for (var i in arr) {
+                data.push({node: arr[i].metric.node, node_pod_utilisation: toPercent(arr[i].value[1])})
+            }
+        } else {
+            for (var i in arr) {
+                data[i]. node_pod_utilisation = toPercent(arr[i].value[1])
+            }
+        }
+    }
+
+    // function sleep (time) {
+    //     return new Promise((resolve) => setTimeout(resolve, time));
+    // }
+    function  toPercent(num) {
+        var result = parseFloat(num) * 100;
+        return Math.ceil(result)
+
+    }
+
+    function sortHander(valA,valB) {
+        console.log(valA)
+        console.log("??")
+        var valAStr = String(valA);
+        var valBStr = String(valB);
+        if(valAStr.indexOf("%")>0) {
+            valA = +valAStr.split("%")[0];
+            valB = +valBStr.split("%")[0];
+        }
+        return parseFloat(valA) - parseFloat(valB);
+    }
+
+    function keepTwoDecimal(num) {
+        var result = parseFloat(num);
+        if (isNaN(result)) {
+            alert('传递参数错误，请检查！');
+            return false;
+        }
+        result = Math.round(num * 100) / 100;
+        return result;
+
+        // if   (num>=0){
+        //     var   tempNumber   =   parseInt((num   *   Math.pow(10,2)+0.5))/Math.pow(10,2);
+        //     return   tempNumber;
+        // } else{
+        //     var numberRound1=-num;
+        //     var   tempNumber   =   parseInt((numberRound1   *   Math.pow(10,2)+0.5))/Math.pow(10,2);
+        //     return   -tempNumber;
+        // }
+        // return num.toFixed(2)
+        // var s = num + ""
+        // var str = s.substring(0,s.indexOf(".") + 3);
+        // return parseFloat(str)
+    }
+
+    // $(function () {
+    //     // $("#example1").DataTable();
+    //     $('#example1').DataTable({
+    //         "paging": true,
+    //         "lengthChange": false,
+    //         "searching": false,
+    //         "ordering": true,
+    //         "info": true,
+    //         "autoWidth": false,
+    //         // "striped": true,
+    //     });
+    // });
+</script>
+
+</body>
+</html>

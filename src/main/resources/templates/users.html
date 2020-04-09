@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 3 | Simple Tables</title>
+    <title>JupyterHub Admin User Table</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Font Awesome -->
@@ -16,6 +16,8 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <!-- SweetAlert -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="../plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+
 
 </head>
 <body class="hold-transition layout-top-nav">
@@ -38,6 +40,9 @@
                 <ul class="navbar-nav">
                     <li class="nav-item ">
                         <a href="/dashboard" class="nav-link">Dashboard</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a href="/nodes" class="nav-link">Nodes</a>
                     </li>
                     <li class="nav-item active">
                         <a href="/users" class="nav-link">Users</a>
@@ -76,25 +81,16 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title"></h3>
-
                                 <div class="card-tools">
-<!--                                    <ul class="pagination pagination-sm float-right">-->
-<!--                                        <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>-->
-<!--                                        <li class="page-item"><a class="page-link" href="#">1</a></li>-->
-<!--                                        <li class="page-item"><a class="page-link" href="#">2</a></li>-->
-<!--                                        <li class="page-item"><a class="page-link" href="#">3</a></li>-->
-<!--                                        <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>-->
-<!--                                    </ul>-->
                                     <button class="btn btn-success" onclick="add_user()" style="margin-right: 40px">add user</button>
                                 </div>
                             </div>
                             <!-- /.card-header -->
-                            <div class="card-body p-0">
-                                <table class="table">
+                            <div class="card-body">
+                                <table class="table  table-bordered table-hover" id="table">
                                     <thead>
                                     <tr>
                                         <!--                    <th style="width: 10px">#</th>-->
@@ -149,10 +145,22 @@
 <script src="../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../dist/js/demo.js"></script>
+<script src="../plugins/datatables/jquery.dataTables.js"></script>
+<script src="../plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
 
 <script>
     var token = localStorage.getItem("token")
-
+    // $(function () {
+    //     // $("#user_table").DataTable();
+    //     $('#table').DataTable({
+    //         "paging": true,
+    //         "lengthChange": false,
+    //         "searching": false,
+    //         "ordering": true,
+    //         "info": true,
+    //         "autoWidth": false,
+    //     });
+    // });
     init_table()
 
     function init_table() {
@@ -207,6 +215,19 @@
                         tab += "</tr>"
                     }
                     tbody.innerHTML = tab
+                    $('#table').DataTable({
+                        "paging": true,
+                        "lengthChange": true,
+                        "searching": true,
+                        "ordering": true,
+                        "info": true,
+                        "autoWidth": false,
+                        "order": [],
+                        "columnDefs": [ {
+                            "orderable": false,
+                            "targets": [6,7]
+                        }]
+                    });
                 }
                 else {
                     alert(result.data)

@@ -12,12 +12,10 @@ import com.sysu.jupyterhubadmin.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.HashMap;
@@ -92,7 +90,7 @@ public class UserController {
     @PassToken
     @RequestMapping(value = "/{username}/access", method = RequestMethod.GET)
     public String access(@PathVariable String username) {
-        String url = configBeanHub.address + "/user/" + username + "/lab";
+        String url = configBeanHub.domain + "/user/" + username + "/lab";
 //        response.setStatus(301);
         //todo 请求头不起作用
 //        response.setHeader("Authorization", "token 333943de7dbe4703a0b9ccf779cdccaf");
@@ -144,7 +142,7 @@ public class UserController {
         JSONObject jsonObject = JSON.parseObject(String.valueOf(json));
 
         if (jsonObject != null) {
-            if (jsonObject.containsKey("status") && String.valueOf(jsonObject.get("status")).equals("404")) {
+            if (jsonObject.containsKey("status") && "404".equals(String.valueOf(jsonObject.get("status")))) {
                 res.setCode(-1);
                 res.setMsg("404 Not Found");
                 return res.toJSON();

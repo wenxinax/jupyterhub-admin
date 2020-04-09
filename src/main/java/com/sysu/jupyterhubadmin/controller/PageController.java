@@ -32,6 +32,12 @@ public class PageController {
         return "users.html";
     }
 
+    @ApiOperation(value = "nodes",notes = "nodes")
+    @RequestMapping(value = "nodes")
+    public String nodes(){
+        return "nodes.html";
+    }
+
     @ApiOperation(value = "dashboard",notes = "dashboard")
     @RequestMapping(value = "dashboard")
     public String dashboard(){
