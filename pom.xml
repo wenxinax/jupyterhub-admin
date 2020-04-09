@@ -49,11 +49,11 @@
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>2.0.1</version>
         </dependency>
-        <dependency>
-            <groupId>com.mchange</groupId>
-            <artifactId>c3p0</artifactId>
-            <version>0.9.5.2</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.mchange</groupId>-->
+<!--            <artifactId>c3p0</artifactId>-->
+<!--            <version>0.9.5.2</version>-->
+<!--        </dependency>-->
         <!-- swagger生成接口API -->
         <dependency>
             <groupId>io.springfox</groupId>
@@ -83,6 +83,13 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <!-- 连接池 -->
+        <!-- Druid 数据连接池依赖 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.1.8</version>
         </dependency>
 
         <dependency>
@@ -133,23 +140,23 @@
 
 
 
-            <plugin>
-                <groupId>com.spotify</groupId>
-                <!-- 这里使用新版dockerfile-maven-plugin插件 -->
-                <artifactId>dockerfile-maven-plugin</artifactId>
-                <version>1.4.10</version>
-                <configuration>
-                    <!-- Dockerfile目录指定 -->
-                    <dockerfile>src/main/docker/Dockerfile</dockerfile>
-                    <repository>registry.cn-shenzhen.aliyuncs.com/wenxinax/jupyterhub-admin</repository>
-                    <!-- 生成镜像标签 如不指定 默认为latest -->
-                    <tag>1.0.2</tag>
-                    <buildArgs>
-                        <!-- 理论上这里定义的参数可以传递到Dockerfile文件中，目前未实现 -->
-                        <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
-                    </buildArgs>
-                </configuration>
-            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>com.spotify</groupId>-->
+<!--                &lt;!&ndash; 这里使用新版dockerfile-maven-plugin插件 &ndash;&gt;-->
+<!--                <artifactId>dockerfile-maven-plugin</artifactId>-->
+<!--                <version>1.4.10</version>-->
+<!--                <configuration>-->
+<!--                    &lt;!&ndash; Dockerfile目录指定 &ndash;&gt;-->
+<!--                    <dockerfile>src/main/docker/Dockerfile</dockerfile>-->
+<!--                    <repository>registry.cn-shenzhen.aliyuncs.com/wenxinax/jupyterhub-admin</repository>-->
+<!--                    &lt;!&ndash; 生成镜像标签 如不指定 默认为latest &ndash;&gt;-->
+<!--                    <tag>1.0.2</tag>-->
+<!--                    <buildArgs>-->
+<!--                        &lt;!&ndash; 理论上这里定义的参数可以传递到Dockerfile文件中，目前未实现 &ndash;&gt;-->
+<!--                        <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>-->
+<!--                    </buildArgs>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
         </plugins>
     </build>
 

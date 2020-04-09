@@ -227,8 +227,27 @@
         var tr = obj.parentElement.parentElement
         var name = tr.childNodes[0].innerText
         // console.log(name)
-        var url = "/api/users/" + name + "/spawn"
-        window.open(url)
+        // var url = "/api/users/" + name + "/spawn"
+        // window.open(url)
+        $.ajax({
+            //请求方式
+            type : "GET",
+            url: "/api/users/" + name + "/spawn",
+
+            headers:{'token':token},
+            //请求成功
+            success : function(result) {
+                console.log(result)
+                window.open(result)
+            },
+            //请求失败，包含具体的错误信息
+            error : function(e){
+                console.log(url)
+                console.log(e)
+            },
+            compete : function (e) {
+            }
+        });
     }
     function stop_server(obj) {
         // console.log(obj)
@@ -286,8 +305,27 @@
         var tr = obj.parentElement.parentElement
         var name = tr.childNodes[0].innerText
         // console.log(name)
-        var url = "/api/users/" + name + "/access"
-        window.open(url)
+        // var url = "/api/users/" + name + "/access"
+        // window.open(url)
+        $.ajax({
+            //请求方式
+            type : "GET",
+            url:"/api/users/" + name + "/access",
+
+            headers:{'token':token},
+            //请求成功
+            success : function(result) {
+                console.log(result)
+                window.open(result)
+            },
+            //请求失败，包含具体的错误信息
+            error : function(e){
+                console.log(url)
+                console.log(e)
+            },
+            compete : function (e) {
+            }
+        });
     }
     function edit_user(obj) {
         var tr = obj.parentElement.parentElement

@@ -16,6 +16,8 @@ public class ConfigBeanHub {
 
     public String token;
 
+    public String domain;
+
 
     public void setAddress(String address) {
         this.address = address;
@@ -23,5 +25,9 @@ public class ConfigBeanHub {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public void setDomain(String domain) {
+        this.domain = domain;
     }
 }

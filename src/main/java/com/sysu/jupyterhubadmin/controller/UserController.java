@@ -91,26 +91,30 @@ public class UserController {
     @ApiOperation(value = "",notes = "跳转到用户的server")
     @PassToken
     @RequestMapping(value = "/{username}/access", method = RequestMethod.GET)
-    public void access(@PathVariable String username, HttpServletResponse response) {
+    public String access(@PathVariable String username) {
         String url = configBeanHub.address + "/user/" + username + "/lab";
-        response.setStatus(301);
+//        response.setStatus(301);
         //todo 请求头不起作用
 //        response.setHeader("Authorization", "token 333943de7dbe4703a0b9ccf779cdccaf");
-        response.setHeader("Location", url);
-        response.setHeader("Connection", "close");
+//        response.setHeader("Location", url);
+//        response.setHeader("Connection", "close");
+        return url;
 
     }
 
     @ApiOperation(value = "",notes = "跳转到spawner")
     @PassToken
     @RequestMapping(value = "/{username}/spawn", method = RequestMethod.GET)
-    public void spawn(@PathVariable String username, HttpServletResponse response) {
-        String url =  configBeanHub.address + "/hub/spawn/" + username;
-        response.setStatus(301);
-        //todo 请求头不起作用
+    public String spawn(@PathVariable String username) {
+        String url =  configBeanHub.domain + "/hub/spawn/" + username;
+//        response.setStatus(301);
+//        todo 请求头不起作用
 //        response.setHeader("Authorization", "token 333943de7dbe4703a0b9ccf779cdccaf");
-        response.setHeader("Location", url);
-        response.setHeader("Connection", "close");
+//        response.setHeader("Location", url);
+//        response.setHeader("Connection", "close");
+//        response.sendRedirect(url);
+        return url;
+
 
     }
     @ApiOperation(value = "/{username}/server",notes = "stop server")

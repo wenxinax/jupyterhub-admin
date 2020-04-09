@@ -74,7 +74,7 @@ public class KsApiRequest {
         try {
             ResponseEntity<String> results = restTemplate.exchange(url, HttpMethod.GET, entity(), String.class);
             JSONObject json = JSON.parseObject(results.getBody());
-            log.info(json.toJSONString());
+//            log.info(json.toJSONString());
             return json;
         }
         catch (HttpClientErrorException e) {
