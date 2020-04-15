@@ -396,11 +396,11 @@
 
         if (data.length === 0) {
             for (var i in arr) {
-                data.push({node: arr[i].metric.node, node_load5: keepTwoDecimal(arr[i].value[1])})
+                data.push({node: arr[i].metric.node, node_load5: toDecimal(arr[i].value[1])})
             }
         } else {
             for (var i in arr) {
-                data[i].node_load5 = keepTwoDecimal(arr[i].value[1])
+                data[i].node_load5 = toDecimal(arr[i].value[1])
             }
         }
     }
@@ -568,6 +568,23 @@
         // var s = num + ""
         // var str = s.substring(0,s.indexOf(".") + 3);
         // return parseFloat(str)
+    }
+    function toDecimal(x) {
+        var f = parseFloat(x);
+        if (isNaN(f)) {
+            return false;
+        }
+        var f = Math.round(x*100)/100;
+        var s = f.toString();
+        var rs = s.indexOf('.');
+        if (rs < 0) {
+            rs = s.length;
+            s += '.';
+        }
+        while (s.length <= rs + 2) {
+            s += '0';
+        }
+        return s;
     }
 
     // $(function () {
